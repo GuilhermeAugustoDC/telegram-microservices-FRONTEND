@@ -1,0 +1,29 @@
+# Node.js (frontend)
+node_modules/
+dist/
+.env.local
+
+# Python (backend)
+__pycache__/
+app/__pycache__/
+app/api/__pycache__/
+app/models/__pycache__/
+app/schemas/__pycache__/
+app/api/routes/__pycache__/
+app/workers/__pycache__/
+sessions/
+.env
+telegram_automation.db
+
+# Vite
+.vite/
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+#Virtual Env
+venv/
+.venv/
