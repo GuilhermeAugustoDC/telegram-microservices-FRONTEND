@@ -37,7 +37,7 @@ const SessionList = ({ sessions, onSessionDeleted }) => {
 							</th>
 						</tr>
 					</thead>
-					<tbody className='bg-gray-900 divide-y divide-gray-200'>
+					<tbody className='bg-gray-800 divide-y divide-gray-200'>
 						{sessions.map((session) => (
 							<tr key={session.id}>
 								<td className='px-6 py-4 whitespace-nowrap text-sm	 font-semibold text-white'>
