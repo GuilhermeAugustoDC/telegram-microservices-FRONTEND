@@ -126,7 +126,7 @@ const CreateSession = () => {
 		<div className='min-h-screen bg-gray-100 flex items-center justify-center'>
 			<main className='container mx-auto p-4'>
 				<div className='max-w-md mx-auto'>
-					<div className='bg-blue-800 p-6 rounded-lg shadow-xl'>
+					<div className='bg-blue-800 p-6 rounded-lg'>
 						<div className='flex items-center justify-between mb-6'>
 							<h2 className='text-2xl font-bold text-blue-100'>
 								Criar Nova Sessão

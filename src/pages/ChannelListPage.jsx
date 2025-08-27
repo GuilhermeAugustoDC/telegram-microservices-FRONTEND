@@ -39,7 +39,7 @@ const ChannelListPage = () => {
 
   return (
     <div className="container mx-auto p-4 sm:p-6 lg:p-8">
-      <div className="bg-white rounded-lg shadow-lg p-6">
+      <div className="bg-white rounded-lg p-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
             <h1 className="text-2xl font-bold text-gray-800">Canais e Grupos ({channels.length})</h1>
             <div className="flex flex-wrap gap-2">

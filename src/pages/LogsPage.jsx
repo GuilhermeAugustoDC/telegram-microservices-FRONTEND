@@ -56,7 +56,7 @@ export default function LogsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg p-4 shadow mb-4">
+      <div className="bg-white rounded-lg p-4 mb-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <label className="block text-sm text-gray-600 mb-1">Nível</label>
@@ -82,7 +82,7 @@ export default function LogsPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-white rounded-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead className="bg-gray-50">

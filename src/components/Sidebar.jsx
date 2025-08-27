@@ -1,6 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FiHome, FiPlusCircle, FiList, FiEye, FiRadio, FiFileText } from 'react-icons/fi';
+import {
+	FiHome,
+	FiPlusCircle,
+	FiList,
+	FiEye,
+	FiRadio,
+	FiFileText,
+} from 'react-icons/fi';
 
 const Sidebar = () => {
 	const linkClasses =
@@ -8,9 +15,9 @@ const Sidebar = () => {
 	const activeLinkClasses = 'bg-gray-700';
 
 	return (
-		<div className='w-64 h-screen bg-gray-800 text-white flex flex-col p-4'>
-			<div className='text-2xl font-bold mb-10'>Telegram SaaS</div>
-			<nav className='flex flex-col space-y-2'>
+		<div className='w-120 h-screen text-center bg-gray-800 text-gray-300 flex flex-col p-5	'>
+			<div className='text-2xl font-bold mb-10 '>Telegram Micro Services</div>
+			<nav className='flex flex-col space-y-2 font-bold'>
 				<NavLink
 					to='/'
 					className={({ isActive }) =>
@@ -18,7 +25,7 @@ const Sidebar = () => {
 					}
 					end
 				>
-					<FiHome className="mr-3" />
+					<FiHome className='mr-3' />
 					<span>Dashboard</span>
 				</NavLink>
 				<NavLink
@@ -27,7 +34,7 @@ const Sidebar = () => {
 						`${linkClasses} ${isActive ? activeLinkClasses : ''}`
 					}
 				>
-					<FiRadio className="mr-3" />
+					<FiRadio className='mr-3' />
 					<span>Automações</span>
 				</NavLink>
 				<NavLink
@@ -36,7 +43,7 @@ const Sidebar = () => {
 						`${linkClasses} ${isActive ? activeLinkClasses : ''}`
 					}
 				>
-					<FiPlusCircle className="mr-3" />
+					<FiPlusCircle className='mr-3' />
 					<span>Sessões</span>
 				</NavLink>
 				<NavLink
@@ -45,7 +52,7 @@ const Sidebar = () => {
 						`${linkClasses} ${isActive ? activeLinkClasses : ''}`
 					}
 				>
-					<FiList className="mr-3" />
+					<FiList className='mr-3' />
 					<span>Listar Canais</span>
 				</NavLink>
 				<NavLink
@@ -54,7 +61,7 @@ const Sidebar = () => {
 						`${linkClasses} ${isActive ? activeLinkClasses : ''}`
 					}
 				>
-					<FiFileText className="mr-3" />
+					<FiFileText className='mr-3' />
 					<span>Logs do Sistema</span>
 				</NavLink>
 			</nav>

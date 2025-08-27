@@ -47,8 +47,8 @@ const AutomationsPage = () => {
     };
 
     return (
-        <div>
-            <h1 className="text-3xl font-bold mb-6">Gerenciar Automações</h1>
+        <div className='bg-gray-700 p-5 rounded-lg '>
+            <h1 className="text-3xl text-center font-extrabold text-white mb-6 ">Gerenciar Automações</h1>
             <div>
                 <AutomationList
                     automations={automations}
