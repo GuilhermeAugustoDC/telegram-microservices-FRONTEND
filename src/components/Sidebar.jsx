@@ -16,7 +16,7 @@ const Sidebar = () => {
 
 	return (
 		<div className='w-120 h-screen text-center bg-gray-800 text-gray-300 flex flex-col p-5	'>
-			<div className='text-2xl font-bold mb-10 '>Telegram Micro Services</div>
+			<div className='text-2xl font-black mb-10 '>Telegram Micro Services</div>
 			<nav className='flex flex-col space-y-2 font-bold'>
 				<NavLink
 					to='/'
@@ -26,7 +26,7 @@ const Sidebar = () => {
 					end
 				>
 					<FiHome className='mr-3' />
-					<span>Dashboard</span>
+					<span className='font-black'>Dashboard</span>
 				</NavLink>
 				<NavLink
 					to='/automations'
@@ -35,7 +35,17 @@ const Sidebar = () => {
 					}
 				>
 					<FiRadio className='mr-3' />
-					<span>Automações</span>
+					<span className='font-black'>Suas Automações</span>
+				</NavLink>
+
+				<NavLink
+					to='/listchannels'
+					className={({ isActive }) =>
+						`${linkClasses} ${isActive ? activeLinkClasses : ''}`
+					}
+				>
+					<FiList className='mr-3' />
+					<span className='font-black'>Criar Automação</span>
 				</NavLink>
 				<NavLink
 					to='/sessions'
@@ -44,16 +54,7 @@ const Sidebar = () => {
 					}
 				>
 					<FiPlusCircle className='mr-3' />
-					<span>Sessões</span>
-				</NavLink>
-				<NavLink
-					to='/listchannels'
-					className={({ isActive }) =>
-						`${linkClasses} ${isActive ? activeLinkClasses : ''}`
-					}
-				>
-					<FiList className='mr-3' />
-					<span>Listar Canais</span>
+					<span className='font-black'>Sessões</span>
 				</NavLink>
 				<NavLink
 					to='/logs'
@@ -62,7 +63,7 @@ const Sidebar = () => {
 					}
 				>
 					<FiFileText className='mr-3' />
-					<span>Logs do Sistema</span>
+					<span className='font-black'>Logs do Sistema</span>
 				</NavLink>
 			</nav>
 		</div>

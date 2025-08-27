@@ -9,16 +9,17 @@
 
 /* fundo */
 ::-webkit-scrollbar-track {
-  background: #bcbcbc; /* bg-gray-800 */
-}
+  background: #1F2937;
+} 
 
 /* puxador */
 ::-webkit-scrollbar-thumb {
-  background: #3f3f3f; /* bg-gray-600 */
+  background: #848484; /* bg-gray-600 */
   border-radius: 9999px; /* rounded-full */
+  border: 2px solid #1F2937; /* border-2 border-gray-400 */
 }
 
 /* hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #7a7a7a;  /* bg-gray-500 */
+  background: #a4a4a4;  /* bg-gray-500 */
 }

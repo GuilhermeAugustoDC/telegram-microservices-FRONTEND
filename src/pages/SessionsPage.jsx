@@ -1,14 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import SessionList from '../components/SessionList';
-import {
-	FiHome,
-	FiPlusCircle,
-	FiList,
-	FiEye,
-	FiRadio,
-	FiFileText,
-} from 'react-icons/fi';
+
+import SessionList from '../components/Sessions/SessionList';
+import CreateSession from '../components/Sessions/CreateSession';
 const SessionsPage = () => {
 	const [sessions, setSessions] = useState([]);
 
@@ -34,12 +28,7 @@ const SessionsPage = () => {
 				Gerenciar Sessões
 			</h1>
 			<div className='mt-6 text-center'>
-				<Link
-					to='/create-session'
-					className='inline-block bg-green-600 text-white font-black px-8 py-3 rounded-lg hover:bg-green-700 transition-colors'
-				>
-					<span>Criar Nova Sessão</span>
-				</Link>
+				<CreateSession />
 			</div>
 			<div>
 				<SessionList sessions={sessions} onSessionDeleted={fetchSessions} />
