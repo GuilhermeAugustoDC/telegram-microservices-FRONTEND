@@ -5,6 +5,7 @@ import AutomationsPage from './pages/AutomationsPage';
 import SessionsPage from './pages/SessionsPage';
 
 import ListChannelsPage from './pages/ListChannelsPage';
+import AutomationSettingsPage from './pages/AutomationsPage';
 import LogsPage from './pages/LogsPage';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/logs" element={<MainLayout><LogsPage /></MainLayout>} />
         
         {/* Rotas sem o layout principal */}
+        <Route path="/automation-settings/:id" element={<AutomationSettingsPage />} />
       </Routes>
     </Router>
   )
