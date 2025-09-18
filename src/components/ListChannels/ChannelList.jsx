@@ -11,7 +11,7 @@ const ChannelList = ({
 	return (
 		<>
 			{/* Cabeçalho fixo */}
-			
+
 			{/* <div className='mb-3'>
 				<h2 className='text-lg md:text-xl text-right font-black text-gray-800 dark:text-white'>
 					Canais e Grupos Disponíveis ({channels.length})
