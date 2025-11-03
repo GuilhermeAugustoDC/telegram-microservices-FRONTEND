@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ChannelList from '../ListChannels/ChannelList';
 
 const AutomationConfigPanel = ({ automation, onSave }) => {
 	const [formData, setFormData] = useState({
@@ -111,31 +112,48 @@ const AutomationConfigPanel = ({ automation, onSave }) => {
 				<label className='block text-gray-300 mb-1 font-semibold'>
 					Canais de Origem
 				</label>
-				{formData.source_channels.map((chatId, idx) => (
-					<div key={idx} className='flex items-center mb-2'>
-						<input
-							type='text'
-							className='rounded px-3 py-2 bg-gray-800 text-gray-100 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-400 flex-1'
-							value={chatId}
-							onChange={(e) =>
-								handleChannelChange('source_channels', idx, e.target.value)
-							}
-							placeholder='ID do canal de origem'
-						/>
+				<div className='space-y-2'>
+					{formData.source_channels.map((chatId, idx) => (
+						<div key={idx} className='flex items-center gap-2'>
+							<div className='flex-1 px-3 py-2 bg-gray-800 rounded text-gray-100'>
+								{channels.find((ch) => String(ch.id) === String(chatId))
+									?.title || chatId}
+							</div>
+							<button
+								onClick={() => handleRemoveChannel('source_channels', idx)}
+								className='text-red-400 hover:text-red-600'
+							>
+								✕
+							</button>
+						</div>
+					))}
+
+					<div className='relative'>
 						<button
-							className='ml-2 text-red-400 hover:text-red-600'
-							onClick={() => handleRemoveChannel('source_channels', idx)}
+							onClick={() => setShowSourceSelector((prev) => !prev)}
+							className='text-blue-400 hover:text-blue-600 text-sm'
 						>
-							✕
+							+ Adicionar canal de origem
 						</button>
+
+						{showSourceSelector && (
+							<div className='absolute top-full left-0 mt-1 w-[500px] z-10'>
+								<ChannelList
+									channels={channels.filter(
+										(ch) => !formData.source_channels.includes(String(ch.id))
+									)}
+									addToSource={(id) => {
+										handleAddChannel('source_channels', String(id));
+										setShowSourceSelector(false);
+									}}
+									addToDestination={() => {}}
+									mode='source'
+									loadingChannels={loadingChannels}
+								/>
+							</div>
+						)}
 					</div>
-				))}
-				<button
-					className='mt-1 text-blue-400 hover:text-blue-600 text-sm'
-					onClick={() => handleAddChannel('source_channels')}
-				>
-					+ Adicionar canal de origem
-				</button>
+				</div>
 			</div>
 
 			{/* Canais de Destino */}
