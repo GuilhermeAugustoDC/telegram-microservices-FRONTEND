@@ -97,11 +97,10 @@ const AutomationConfigPanel = ({ automation, onSave }) => {
 			<div className='mb-4'>
 				<label className='block text-gray-300 mb-1 font-semibold'>Status</label>
 				<span
-					className={`px-2 py-1 rounded text-xs font-bold ${
-						automation.is_active
-							? 'bg-green-500 text-white'
-							: 'bg-red-500 text-white'
-					}`}
+					className={`px-2 py-1 rounded text-xs font-bold ${automation.is_active
+						? 'bg-green-500 text-white'
+						: 'bg-red-500 text-white'
+						}`}
 				>
 					{automation.is_active ? 'Rodando' : 'Parado'}
 				</span>
@@ -146,7 +145,7 @@ const AutomationConfigPanel = ({ automation, onSave }) => {
 										handleAddChannel('source_channels', String(id));
 										setShowSourceSelector(false);
 									}}
-									addToDestination={() => {}}
+									addToDestination={() => { }}
 									mode='source'
 									loadingChannels={loadingChannels}
 								/>
@@ -190,7 +189,7 @@ const AutomationConfigPanel = ({ automation, onSave }) => {
 										(ch) =>
 											!formData.destination_channels.includes(String(ch.id))
 									)}
-									addToSource={() => {}}
+									addToSource={() => { }}
 									addToDestination={(id) => {
 										handleAddChannel('destination_channels', String(id));
 										setShowDestSelector(false);
