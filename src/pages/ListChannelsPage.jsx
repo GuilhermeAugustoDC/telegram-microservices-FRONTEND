@@ -20,16 +20,16 @@ const CreateAutomationPage = () => {
 	};
 
 	return (
-		<div className='bg-gray-700 p-5 rounded-lg'>
+		<div className='bg-gray-700 p-5 rounded-lg h-[calc(100vh-60px)] flex flex-col'>
 			{/* Título */}
 			<h1 className='text-3xl md:text-4xl font-black text-center pb-6 text-white'>
 				Automação Telegram
 			</h1>
 
 			{/* Grid principal */}
-			<div className='grid grid-cols-1 lg:grid-cols-2 gap-6 max-h-[calc(100vh-140px)]'>
+			<div className='grid grid-cols-1 lg:grid-cols-2 gap-5 flex-1 overflow-hidden'>
 				{/* Esquerda: formulário */}
-				<div className='h-full overflow-hidden'>
+				<div className='h-full overflow-auto pr-2'>
 					<CreateAutomationForm
 						selectedSession={selectedSession}
 						setSelectedSession={setSelectedSession}
@@ -45,7 +45,7 @@ const CreateAutomationPage = () => {
 				</div>
 
 				{/* Direita: lista de canais */}
-				<div className='h-full overflow-hidden'>
+				<div className='bg h-full overflow-auto pl-2'>
 					<ChannelList
 						channels={channels}
 						addToSource={addToSource}

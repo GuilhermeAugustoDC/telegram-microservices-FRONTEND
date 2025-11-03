@@ -4,13 +4,25 @@ const AutomationConfigPanel = ({ automation, onSave }) => {
 	const [formData, setFormData] = useState({
 		name: '',
 		caption: '',
+		source_channels: [],
+		destination_channels: [],
 	});
+	const [channels, setChannels] = useState([]);
+	const [showSourceSelector, setShowSourceSelector] = useState(false);
+	const [showDestSelector, setShowDestSelector] = useState(false);
+	const [loadingChannels, setLoadingChannels] = useState(false);
 
 	useEffect(() => {
 		if (automation) {
 			setFormData({
 				name: automation.name || '',
 				caption: automation.caption || '',
+				source_channels: automation.source_channels
+					? automation.source_channels.map((ch) => ch.chat_id || '')
+					: [],
+				destination_channels: automation.destination_channels
+					? automation.destination_channels.map((ch) => ch.chat_id || '')
+					: [],
 			});
 		}
 	}, [automation]);
@@ -28,13 +40,37 @@ const AutomationConfigPanel = ({ automation, onSave }) => {
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
+	const handleChannelChange = (type, idx, value) => {
+		setFormData((prev) => {
+			const arr = [...prev[type]];
+			arr[idx] = value;
+			return { ...prev, [type]: arr };
+		});
+	};
+
+	const handleAddChannel = (type) => {
+		setFormData((prev) => ({
+			...prev,
+			[type]: [...prev[type], ''],
+		}));
+	};
+
+	const handleRemoveChannel = (type, idx) => {
+		setFormData((prev) => {
+			const arr = [...prev[type]];
+			arr.splice(idx, 1);
+			return { ...prev, [type]: arr };
+		});
+	};
+
 	const handleSave = () => {
 		if (onSave) {
-			// envia apenas os campos que queremos atualizar
 			onSave({
 				id: automation.id,
 				name: formData.name,
 				caption: formData.caption,
+				source_channels: formData.source_channels.filter(Boolean),
+				destination_channels: formData.destination_channels.filter(Boolean),
 			});
 		}
 	};
@@ -68,6 +104,86 @@ const AutomationConfigPanel = ({ automation, onSave }) => {
 				>
 					{automation.is_active ? 'Rodando' : 'Parado'}
 				</span>
+			</div>
+
+			{/* Canais de Origem */}
+			<div className='mb-4'>
+				<label className='block text-gray-300 mb-1 font-semibold'>
+					Canais de Origem
+				</label>
+				{formData.source_channels.map((chatId, idx) => (
+					<div key={idx} className='flex items-center mb-2'>
+						<input
+							type='text'
+							className='rounded px-3 py-2 bg-gray-800 text-gray-100 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-400 flex-1'
+							value={chatId}
+							onChange={(e) =>
+								handleChannelChange('source_channels', idx, e.target.value)
+							}
+							placeholder='ID do canal de origem'
+						/>
+						<button
+							className='ml-2 text-red-400 hover:text-red-600'
+							onClick={() => handleRemoveChannel('source_channels', idx)}
+						>
+							✕
+						</button>
+					</div>
+				))}
+				<button
+					className='mt-1 text-blue-400 hover:text-blue-600 text-sm'
+					onClick={() => handleAddChannel('source_channels')}
+				>
+					+ Adicionar canal de origem
+				</button>
+			</div>
+
+			{/* Canais de Destino */}
+			<div className='mb-4'>
+				<label className='block text-gray-300 mb-1 font-semibold'>
+					Canais de Destino
+				</label>
+				<div className='space-y-2'>
+					{formData.destination_channels.map((chatId, idx) => (
+						<div key={idx} className='flex items-center gap-2'>
+							<div className='flex-1 px-3 py-2 bg-gray-800 rounded text-gray-100'>
+								{channels.find((ch) => String(ch.id) === String(chatId))
+									?.title || chatId}
+							</div>
+							<button
+								onClick={() => handleRemoveChannel('destination_channels', idx)}
+								className='text-red-400 hover:text-red-600'
+							>
+								✕
+							</button>
+						</div>
+					))}
+					<div className='relative'>
+						<button
+							onClick={() => setShowDestSelector((prev) => !prev)}
+							className='text-blue-400 hover:text-blue-600 text-sm'
+						>
+							+ Adicionar canal de destino
+						</button>
+						{showDestSelector && (
+							<div className='absolute top-full left-0 mt-1 w-[500px] z-10'>
+								<ChannelList
+									channels={channels.filter(
+										(ch) =>
+											!formData.destination_channels.includes(String(ch.id))
+									)}
+									addToSource={() => {}}
+									addToDestination={(id) => {
+										handleAddChannel('destination_channels', String(id));
+										setShowDestSelector(false);
+									}}
+									mode='destination'
+									loadingChannels={loadingChannels}
+								/>
+							</div>
+						)}
+					</div>
+				</div>
 			</div>
 
 			{/* Legenda personalizada */}
